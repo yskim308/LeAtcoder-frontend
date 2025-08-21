@@ -3,8 +3,7 @@ import { useTokenStore } from "@/store/token-store";
 import { useQuery } from "@tanstack/react-query";
 import { backendBaseUrl } from "@/lib/api";
 import axios from "axios";
-import { useParams } from "next/navigation";
-import { useRouter } from "next/router";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 
 interface CompleteReponse {
@@ -13,13 +12,17 @@ interface CompleteReponse {
 
 export default function CompletePage() {
   const tokenStore = useTokenStore();
-  const { tempToken } = useParams();
   const router = useRouter();
 
+  const searchParams = useSearchParams();
+  const tempToken = searchParams.get("tempToken");
+
   const completeAuth = async () => {
+    console.log("temp token? " + tempToken);
     const response = await axios.get<CompleteReponse>(
-      `${backendBaseUrl}/complete/${tempToken}`,
+      `${backendBaseUrl}/auth/complete/${tempToken}`,
     );
+    console.log(response);
     return response.data;
   };
 
