@@ -10,13 +10,10 @@ import {
 } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { backendBaseUrl } from "@/lib/api";
 
 export default function LoginPage() {
   const router = useRouter();
-  const backendBaseUrl = process.env.NEXT_PUBLIC_BACKEND_BASE_URL;
-  if (!backendBaseUrl) {
-    throw new Error("NEXT_PUBLIC_BACKEND_BASE_URL NOT SET IN .env");
-  }
 
   const handleGoogleSignIn = () => {
     router.push(`${backendBaseUrl}/auth/login/google`);
