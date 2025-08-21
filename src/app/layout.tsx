@@ -1,3 +1,4 @@
+import Providers from "@/components/providers";
 import "./globals.css";
 import { Metadata } from "next";
 
@@ -13,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full w-full">
-      <body className="h-full w-full">{children}</body>
+      <body className="h-full w-full">
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
