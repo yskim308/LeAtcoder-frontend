@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-export default function RootLayout({
+export default function Providers({
   children,
 }: Readonly<{
   children: React.ReactNode;
