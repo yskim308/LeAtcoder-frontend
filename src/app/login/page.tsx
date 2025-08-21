@@ -8,10 +8,18 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function LoginPage() {
+  const router = useRouter();
+  const backendBaseUrl = process.env.NEXT_PUBLIC_BACKEND_BASE_URL;
+  if (!backendBaseUrl) {
+    throw new Error("NEXT_PUBLIC_BACKEND_BASE_URL NOT SET IN .env");
+  }
+
   const handleGoogleSignIn = () => {
-    // TODO: Implement Google OAuth sign-in
+    router.push(`${backendBaseUrl}/auth/login/google`);
     console.log("Google sign-in clicked");
   };
 
@@ -28,6 +36,7 @@ export default function LoginPage() {
             variant="outline"
             className="w-full h-11 gap-2 bg-transparent"
           >
+            <Image src="/google-logo.svg" alt="Google" width={30} height={30} />
             Continue with Google
           </Button>
 
