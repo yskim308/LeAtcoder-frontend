@@ -1,23 +1,13 @@
 "use client";
-
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { useRouter } from "next/navigation";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import { backendBaseUrl } from "@/lib/api";
 
 export default function LoginPage() {
-  const router = useRouter();
-
   const handleGoogleSignIn = () => {
-    router.push(`${backendBaseUrl}/auth/login/google`);
-    console.log("Google sign-in clicked");
+    // Use top-level navigation for OAuth start
+    window.location.href = `${backendBaseUrl}/auth/login/google`;
   };
 
   return (
@@ -28,25 +18,10 @@ export default function LoginPage() {
           <CardDescription>Sign in to your account to continue</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <Button
-            onClick={handleGoogleSignIn}
-            variant="outline"
-            className="w-full h-11 gap-2 bg-transparent"
-          >
+          <Button onClick={handleGoogleSignIn} variant="outline" className="w-full h-11 gap-2 bg-transparent">
             <Image src="/google-logo.svg" alt="Google" width={30} height={30} />
             Continue with Google
           </Button>
-
-          <div className="text-center text-sm text-muted-foreground">
-            By continuing, you agree to our{" "}
-            <a href="#" className="underline hover:text-foreground">
-              Terms of Service
-            </a>{" "}
-            and{" "}
-            <a href="#" className="underline hover:text-foreground">
-              Privacy Policy
-            </a>
-          </div>
         </CardContent>
       </Card>
     </div>
